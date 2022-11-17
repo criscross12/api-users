@@ -70,7 +70,7 @@ export class AuthApp {
     user: GetUserLoginDto,
     createSessionRegistrationDto: CreateSessionRegistrationDto,
   ) {
-    const { uuid, enabled, email, phone, user_name } = user;
+    const { uuid, enabled, email, phone } = user;
     user.time_of_live_token = getTokenExpires();
     createSessionRegistrationDto.user_uuid = uuid;
     const res = await this.sessionsApp.getSessionRegistrationByUuidDevice(
