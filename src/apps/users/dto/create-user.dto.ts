@@ -31,18 +31,18 @@ export class CreateUserDto {
   second_name: string;
 
   @ApiProperty()
+  @IsOptional()
   date_of_birth: Date;
 
   @ApiProperty({ example: 'email@gmail.com' })
   @IsEmail({}, { message: UserMessagesEnum.EMAIL_INVALID })
-  @CheckUserDoesntExistByEmail()
   email: string;
 
   @ApiProperty()
   @IsString({ message: UserMessagesEnum.PASSWORD_INVALID })
-  @MinLength(USER_PASSWORD_MINIMUM_LENGTH, {
-    message: UserMessagesEnum.PASSWORD_INVALID_LENGHT,
-  })
+  // @MinLength(USER_PASSWORD_MINIMUM_LENGTH, {
+  //   message: UserMessagesEnum.PASSWORD_INVALID_LENGHT,
+  // })
   password: string;
 
   @ApiProperty()
@@ -63,6 +63,11 @@ export class CreateUserDto {
   @IsString()
   sex: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsBoolean({ message: UserMessagesEnum.ENABLED_INVALID })
+  enabled: boolean;
+
   created_at: number;
 
   @ApiProperty({ required: false })
@@ -76,9 +81,4 @@ export class CreateUserDto {
   @IsArray({ message: PermissionMessagesEnum.PERMISSIONS_INVALID })
   @CheckThePermissionExist()
   permissions: Array<string>;
-
-  @ApiProperty({ required: false })
-  @IsOptional()
-  @IsBoolean({ message: UserMessagesEnum.ENABLED_INVALID })
-  enabled: boolean;
 }

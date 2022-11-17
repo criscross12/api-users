@@ -51,6 +51,7 @@ export class UsersController {
     @Body(EncriptPasswordPipe) createUserDto: CreateUserDto,
     @Res() res: Response,
   ): Promise<GetUserDto> {
+    console.log(createUserDto.date_of_birth);
     return handleResponse(res, this.usersServiceApp.create(createUserDto));
   }
 
@@ -62,7 +63,7 @@ export class UsersController {
     return handleResponse(res, this.usersServiceApp.findAll());
   }
 
-  @ApiOkResponse({ type: GetUserDetailDto })
+  @ApiOkResponse({ type: GetUserDto })
   @Permissions(ListPermissions.GET_USERS)
   @UseGuards(JwtAuthGuard, AuthGuard)
   @Get(':uuid')
@@ -70,7 +71,7 @@ export class UsersController {
     @Param('uuid', ParseUUIDPipe) uuid: string,
     @Res() res: Response,
   ): Promise<GetUserDetailDto> {
-    return handleResponse(res, this.usersServiceApp.getUserByUuid(uuid));
+    return handleResponse(res, this.usersServiceApp.findOne(uuid));
   }
 
   @ApiOkResponse({ type: MessageResponseDto })

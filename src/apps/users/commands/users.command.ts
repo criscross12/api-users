@@ -31,7 +31,7 @@ export class UsersCommand {
     if (!email || !password)
       throw new Error('los campos email y password son requeridos');
     const userAdmin = await buildJsonCreateUserAdmin(email, password);
-    await this.usersService.createUser(userAdmin);
+    // await this.usersService.createUser(userAdmin);
     this.logger.log('USUARIO SUPER ADMIN CREADO CON EXITO!!!!!!!!!!');
   }
 }

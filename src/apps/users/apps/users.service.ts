@@ -18,6 +18,7 @@ import { GetUserDetailDto } from '../dto/get-user-detail.dto';
 import { UploadImageProfileDto } from '../dto/upload-images-profile.dto';
 import { GetPermissionDto } from 'src/apps/permissions/dto/get-permission.dto';
 import { GetRoleDto } from 'src/apps/roles/dto/get-role.dto';
+import { GetAge } from 'src/apps/shared/utilis/helpers';
 
 @Injectable()
 export class UsersServiceApp {
@@ -28,16 +29,24 @@ export class UsersServiceApp {
     private readonly permissionsService: PermissionsService,
   ) {}
 
-  create = async (createUserDto: CreateUserDto): Promise<GetUserDto> =>
-    plainToClass(GetUserDto, await this.usersService.createUser(createUserDto));
-
-  findAll = async (): Promise<GetUserDto[]> =>
-    (await this.usersService.getUsers()).map((u) =>
-      plainToClass(GetUserDto, u),
+  create = async (createUserDto: CreateUserDto): Promise<GetUserDto> => {
+    return plainToClass(
+      GetUserDto,
+      await this.usersService.createUser(createUserDto),
     );
+  };
 
-  async findOne(id: string) {
-    const user = await this.usersService.getUserById(id);
+  findAll = async (): Promise<GetUserDto[]> => {
+    let users = await this.usersService.getUsers();
+    return users.map((u) => {
+      u.age = GetAge(u.date_of_birth);
+      return u;
+    });
+  };
+
+  async findOne(uuid: string) {
+    const user = await this.usersService.getUserByUuid(uuid);
+    user.age = GetAge(user.date_of_birth);
     if (!user) throw new UserNotFoundError();
     return plainToClass(GetUserDto, user);
   }

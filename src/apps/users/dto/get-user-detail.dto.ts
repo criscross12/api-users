@@ -12,19 +12,43 @@ export class GetUserDetailDto {
 
   @ApiProperty()
   @Expose()
-  readonly email: string;
+  readonly name: string;
 
   @ApiProperty()
   @Expose()
-  readonly user_name: string;
+  first_name: string;
 
   @ApiProperty()
   @Expose()
-  readonly image_profile: string;
+  second_name: string;
 
   @ApiProperty()
   @Expose()
-  readonly phone: string;
+  age: number;
+
+  @ApiProperty()
+  @Expose()
+  date_of_birth: Date;
+
+  @ApiProperty()
+  @Expose()
+  email: string;
+
+  @ApiProperty()
+  @Expose()
+  ocupation: string;
+
+  @ApiProperty()
+  @Expose()
+  phone: string;
+
+  @ApiProperty()
+  @Expose()
+  reason: string;
+
+  @ApiProperty()
+  @Expose()
+  sex: string;
 
   @ApiProperty()
   @Expose()
