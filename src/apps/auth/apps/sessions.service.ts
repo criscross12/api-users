@@ -26,11 +26,8 @@ export class SessionsApp {
     return await this.sessionsService.getSessionById(_id);
   };
 
-  getSessionRegistrationByUuids = async (
-    user_uuid: string,
-    uuid_device: string,
-  ) => {
-    return await this.sessionsService.getSessionByUuid(user_uuid, uuid_device);
+  getSessionRegistrationByUuids = async (user_uuid: string) => {
+    return await this.sessionsService.getSessionByUuid(user_uuid);
   };
 
   getSessionRegistrationByRefreshToken = async (

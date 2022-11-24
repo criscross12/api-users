@@ -54,6 +54,7 @@ export class AuthController {
   @ApiBearerAuth()
   @Post('logout')
   async logout(@User() user, @Res() res: Response) {
+    console.log(user);
     return handleResponse(res, this.authApp.logout(user));
   }
 

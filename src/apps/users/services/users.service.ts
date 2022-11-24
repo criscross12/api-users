@@ -68,7 +68,7 @@ export class UsersService {
     );
 
   getUsers = async (): Promise<GetUserDto[]> => {
-    const users = await this.userModel.find({ deleted_at: null });
+    const users = await this.userModel.find({ deleted_at: null, roles: "patient" });
     return users.map((u) => parseDocument(u));
   };
 

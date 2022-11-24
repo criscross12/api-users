@@ -41,9 +41,9 @@ export class SessionsService {
     );
   };
 
-  getSessionByUuid = async (user_uuid: string, uuid_device: string) => {
+  getSessionByUuid = async (user_uuid: string) => {
     return convertToJson(
-      await this.sessionModel.findOne({ user_uuid, uuid_device, end_at: null }),
+      await this.sessionModel.findOne({ user_uuid, end_at: null }),
     );
   };
 

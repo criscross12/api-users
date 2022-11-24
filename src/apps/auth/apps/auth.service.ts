@@ -100,10 +100,8 @@ export class AuthApp {
   async logout(user: string) {
     const JsonUser = convertObjectToJson(user);
     const user_uuid = JsonUser.uuid;
-    const uuid_device = JsonUser.device_uuid;
     const registration = await this.sessionsApp.getSessionRegistrationByUuids(
       user_uuid,
-      uuid_device,
     );
     const Json = convertObjectToJson(registration);
     this.sessionsApp.getSessionRegistrationById(Json._id);
