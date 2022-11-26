@@ -16,7 +16,7 @@ async function bootstrap() {
   const appConfig = appConfigLoader();
   const logger: Logger = app.get(Logger);
 
-  app.setGlobalPrefix('api-users-nutrina');
+  app.setGlobalPrefix('api-usrs');
   app.enableCors();
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new HttpErrorsInterceptor());
@@ -41,12 +41,12 @@ async function bootstrap() {
     .setTitle('Doc api users Nutrina')
     .setDescription('Documentación de api users Nutrina')
     .setVersion('1.0.0')
-    .setBasePath('api-users-nutrina')
+    .setBasePath('api-usrs')
     .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-users-nutrina/doc', app, document);
+  SwaggerModule.setup('api-usrs/doc', app, document);
 
   await app.listen(appConfig.port, null, () => {
     logger.log(`Listening: http://localhost:${appConfig.port}`, 'AppConfig');
