@@ -51,7 +51,7 @@ export class UsersController {
     @Body(EncriptPasswordPipe) createUserDto: CreateUserDto,
     @Res() res: Response,
   ): Promise<GetUserDto> {
-    console.log(createUserDto.date_of_birth);
+    console.log(createUserDto);
     return handleResponse(res, this.usersServiceApp.create(createUserDto));
   }
 
