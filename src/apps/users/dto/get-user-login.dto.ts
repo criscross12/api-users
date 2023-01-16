@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
+import { IsOptional } from 'class-validator';
 import { PermissionDto } from 'src/apps/permissions/dto/permission.dto';
 
 @Exclude()
@@ -32,6 +33,7 @@ export class GetUserLoginDto {
 
   @ApiProperty()
   @Expose()
+  @IsOptional()
   email: string;
 
   @ApiProperty()

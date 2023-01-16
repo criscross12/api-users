@@ -35,6 +35,7 @@ export class CreateUserDto {
   date_of_birth: Date;
 
   @ApiProperty({ example: 'email@gmail.com' })
+  @IsOptional()
   @IsEmail({}, { message: UserMessagesEnum.EMAIL_INVALID })
   email: string;
 
@@ -51,7 +52,7 @@ export class CreateUserDto {
 
   @ApiProperty({ required: false })
   @ValidateIf(({ email }) => !email)
-  @CheckUserExistByPhone()
+  //@CheckUserExistByPhone()
   @IsString({ message: UserMessagesEnum.PHONE_INVALID })
   phone: string;
 
