@@ -41,7 +41,7 @@ async function bootstrap() {
     .setTitle('Doc api users Nutrina')
     .setDescription('Documentación de api users Nutrina')
     .setVersion('1.0.0')
-    .setBasePath('api-usrs')
+    .addServer('api-usrs')
     .addBearerAuth()
     .build();
 
