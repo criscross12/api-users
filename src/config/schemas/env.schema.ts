@@ -14,14 +14,14 @@ export const EnvSchema = Joi.object({
   DB_DATABASE: Joi.string().required(),
 
   API_TOKEN: Joi.string().min(124).required(),
-  AUTH_URL_BASE: Joi.string().uri().required(),
-  NOTIFICATIONS_URL_BASE: Joi.string().uri().required(),
-  TIME_MINUTES_ACCOUNT_CONFIRMATION: Joi.number().required(),
-  TIME_MINUTES_RECOVERY_PASSWORD: Joi.number().required(),
+  AUTH_URL_BASE: Joi.string().uri(),
+  NOTIFICATIONS_URL_BASE: Joi.string().uri(),
+  TIME_MINUTES_ACCOUNT_CONFIRMATION: Joi.number(),
+  TIME_MINUTES_RECOVERY_PASSWORD: Joi.number(),
   JWT_SECRET: Joi.string().required(),
   JWT_EXPIRES_IN: Joi.number().required(),
 
-  USER_HAVE_ACCOUNT_AVAILABLE: Joi.boolean().required().valid(true, false),
-  RECOVERY_PASSWORD_AVAILABLE: Joi.boolean().required().valid(true, false),
-  REGISTER_ME_AVAILABLE: Joi.boolean().required().valid(true, false),
+  USER_HAVE_ACCOUNT_AVAILABLE: Joi.boolean().valid(true, false),
+  RECOVERY_PASSWORD_AVAILABLE: Joi.boolean().valid(true, false),
+  REGISTER_ME_AVAILABLE: Joi.boolean().valid(true, false),
 });
